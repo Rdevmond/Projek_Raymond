@@ -111,7 +111,7 @@ class MainActivity : AppCompatActivity() {
                     editor.putString("saved_username", user)
                     editor.putString("saved_password", pass)
                     editor.apply()
-                    Toast.makeText(this, "Username dan password berhasil disimpan!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "$user dan $pass berhasil disimpan!", Toast.LENGTH_SHORT).show()
                 }
                 .setAnchorView(binding.bottomNavView) // Menempatkan posisi Snackbar tepat di atas BottomNavView
                 .show()

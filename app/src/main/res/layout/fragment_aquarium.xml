@@ -1,4 +1,15 @@
-<?xml version="1.0" encoding="utf-8"?>
+<!--
+    =============================================================================
+    PENGATURAN TATA LETAK GRID (GRIDLAYOUT & NESTEDSCROLLVIEW)
+    =============================================================================
+    - NestedScrollView: Membungkus konten agar seluruh halaman katalog bisa di-scroll vertikal.
+    - GridLayout (androidx.gridlayout.widget.GridLayout):
+        * Menyusun item produk dalam format tabel grid matriks.
+        * app:columnCount="3": Membagi tampilan menjadi 3 kolom sejajar secara otomatis.
+        * app:useDefaultMargins="true": Memberikan jarak standar antar elemen kartu.
+    - Tiap MaterialCardView di dalamnya memiliki 'app:layout_columnWeight="1"'
+      agar lebar ketiga kolom membagi rata layar secara responsif.
+-->
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"

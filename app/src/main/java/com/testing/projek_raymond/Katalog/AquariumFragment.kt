@@ -20,9 +20,14 @@ class AquariumFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        // Pasang event klik pada semua kartu produk aquarium
         setupCardClickListeners(view)
     }
 
+    /**
+     * Mengatur listener klik pada setiap MaterialCardView di dalam layout.
+     * Mengambil informasi nama item dan ukurannya lalu menampilkannya lewat Toast.
+     */
     private fun setupCardClickListeners(view: View) {
         val cards = mutableListOf<MaterialCardView>()
         findAllCards(view, cards)
@@ -42,6 +47,7 @@ class AquariumFragment : Fragment() {
         }
     }
 
+    // Fungsi rekursif untuk mengumpulkan semua MaterialCardView dalam hierarki layout
     private fun findAllCards(view: View, result: MutableList<MaterialCardView>) {
         if (view is MaterialCardView) {
             result.add(view)
@@ -52,6 +58,7 @@ class AquariumFragment : Fragment() {
         }
     }
 
+    // Fungsi rekursif untuk mengumpulkan semua TextView di dalam sebuah card
     private fun findAllTextViews(view: View, result: MutableList<TextView>) {
         if (view is TextView) {
             result.add(view)

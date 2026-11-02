@@ -2,6 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <!--
+        IZIN AKSES INTERNET (WAJIB untuk WebView & Glide):
+        - Dibutuhkan oleh WebViewActivity untuk membuka halaman web (zonamancing.id)
+        - Dibutuhkan juga oleh library Glide untuk memuat gambar avatar dari URL di modul Komunitas
+        Tanpa izin ini, aplikasi TIDAK BISA mengakses jaringan internet dan akan crash/gagal memuat konten.
+    -->
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -17,6 +23,17 @@
             android:name=".Tutorial.TutorialActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
+
+        <!--
+            =====================================================================
+            PENGATURAN SPLASH SCREEN (LAUNCHER ACTIVITY)
+            =====================================================================
+            - android:exported="true": Wajib bernilai true agar bisa diluncurkan oleh launcher OS Android.
+            - intent-filter:
+                * action MAIN: Menandai ini sebagai titik awal utama (entry point) aplikasi.
+                * category LAUNCHER: Menampilkan icon aplikasi di home screen / app drawer HP.
+            Artinya, ketika aplikasi dibuka pertama kali oleh pengguna, SplashScreen akan dijalankan pertama kali.
+        -->
         <activity
             android:name=".SplashScreen"
             android:exported="true"
@@ -47,6 +64,12 @@
             android:name=".Komunitas.ProfileKomentatorActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
+        <!--
+            REGISTRASI WEBVIEWACTIVITY:
+            Activity ini menampilkan konten web di dalam aplikasi menggunakan komponen WebView.
+            Dibuka dari PengaturanActivity melalui tombol "Zona Mancing" (btnZonaMancing).
+            android:exported="false": Tidak dapat dibuka langsung dari luar aplikasi.
+        -->
         <activity
             android:name=".Pengaturan.WebViewActivity"
             android:exported="false"

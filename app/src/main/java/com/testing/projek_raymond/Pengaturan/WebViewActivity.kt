@@ -30,7 +30,7 @@ class WebViewActivity : AppCompatActivity() {
             insets
         }
 
-        // Setup Toolbar
+        // 1. Setup Toolbar dengan tombol kembali
         setSupportActionBar(binding.toolbar)
         supportActionBar?.apply {
             title = "Zona Mancing"
@@ -39,13 +39,14 @@ class WebViewActivity : AppCompatActivity() {
             setHomeAsUpIndicator(R.drawable.ic_arrow_back)
         }
 
-        // Konfigurasi WebView dan Progress Bar
+        // 2. Konfigurasi WebView: Mengaktifkan JavaScript, storage, dan view port
         binding.webView.apply {
             settings.javaScriptEnabled = true
             settings.domStorageEnabled = true
             settings.loadWithOverviewMode = true
             settings.useWideViewPort = true
 
+            // Menjaga agar link eksternal tetap terbuka di dalam aplikasi (bukan browser eksternal)
             webViewClient = object : WebViewClient() {
                 override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
                     super.onPageStarted(view, url, favicon)
@@ -56,18 +57,22 @@ class WebViewActivity : AppCompatActivity() {
                 }
             }
 
+            // Memantau proses loading progress halaman web
             webChromeClient = object : WebChromeClient() {
                 override fun onProgressChanged(view: WebView?, newProgress: Int) {
                     if (newProgress < 100) {
-                    } else {
+                        // Dapat digunakan untuk memantau progress loading
                     }
                 }
             }
 
+            // Memuat URL target ke dalam komponen WebView
             loadUrl("https://www.zonamancing.id/")
         }
 
-        // Handler tombol back agar mundur di riwayat WebView jika memungkinkan
+        // 3. Handler tombol Back fisik/gesture HP:
+        // Jika masih ada riwayat navigasi di dalam WebView (canGoBack), mundur ke halaman sebelumnya.
+        // Jika sudah di halaman awal, keluar dari activity (finish).
         onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 if (binding.webView.canGoBack()) {
@@ -79,9 +84,11 @@ class WebViewActivity : AppCompatActivity() {
         })
     }
 
+    // 4. Handler tombol Back pada toolbar (panah kiri atas)
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             android.R.id.home -> {
+                // Perilaku sama: jika bisa mundur di web, lakukan goBack, jika tidak maka finish
                 if (binding.webView.canGoBack()) {
                     binding.webView.goBack()
                 } else {

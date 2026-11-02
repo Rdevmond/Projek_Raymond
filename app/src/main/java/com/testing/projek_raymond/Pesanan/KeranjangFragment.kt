@@ -7,6 +7,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.testing.projek_raymond.databinding.FragmentKeranjangBinding
 
+/**
+ * Fragment untuk menampilkan daftar keranjang belanja pengguna.
+ * Menampilkan item produk yang siap untuk checkout pesanan.
+ */
 class KeranjangFragment : Fragment() {
     private var _binding: FragmentKeranjangBinding? = null
     private val binding get() = _binding!!

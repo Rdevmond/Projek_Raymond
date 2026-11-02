@@ -1,4 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
+<!--
+    =========================================================================
+    LAYOUT SPLASH SCREEN (CONSTRAINTLAYOUT)
+    =========================================================================
+    ConstraintLayout digunakan sebagai root layout untuk menyusun elemen UI secara responsif
+    menggunakan titik-titik jangkar (constraints) terhadap sisi layar (parent) atau view lain.
+-->
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -8,6 +14,7 @@
     android:background="@color/dark_blue_bg"
     tools:context=".SplashScreen">
 
+    <!-- 1. Logo Aplikasi: Di-anchor ke tengah horizontal dan atas layar -->
     <ImageView
         android:id="@+id/imageView2"
         android:layout_width="216dp"
@@ -19,6 +26,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/logo" />
 
+    <!-- 2. ProgressBar: Animasi putaran loading yang menandakan proses inisialisasi aplikasi -->
     <ProgressBar
         android:id="@+id/progressBar"
         style="?android:attr/progressBarStyle"
@@ -32,6 +40,7 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView2"
         app:layout_constraintVertical_bias="0.375" />
 
+    <!-- 3. Teks Nama Toko/Aplikasi: Ditempatkan di antara logo dan progress bar -->
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"

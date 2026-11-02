@@ -27,18 +27,23 @@ class Tutorial4Fragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // Event klik tombol "Mulai" / "Lewati" pada slide tutorial terakhir
         binding.btnLewati.setOnClickListener {
             val sharedPref = requireActivity().getSharedPreferences("user_pref", Context.MODE_PRIVATE)
+            // 1. Tandai bahwa user sudah menyelesaikan tutorial agar tidak muncul lagi saat buka aplikasi
             sharedPref.edit().putBoolean("isTutorialFinished", true).apply()
 
+            // 2. Cek apakah user sudah login sebelumnya
             val isLogin = sharedPref.getBoolean("isLogin", false)
             val intent = if (isLogin) {
+                // Jika sudah login, langsung ke halaman utama (MainActivity)
                 Intent(requireContext(), MainActivity::class.java)
             } else {
+                // Jika belum login, arahkan ke LoginActivity
                 Intent(requireContext(), LoginActivity::class.java)
             }
             startActivity(intent)
-            requireActivity().finish()
+            requireActivity().finish() // Tutup TutorialActivity
         }
     }
 

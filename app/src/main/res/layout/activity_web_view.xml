@@ -1,4 +1,19 @@
-<?xml version="1.0" encoding="utf-8"?>
+<!--
+    =============================================================================
+    LAYOUT WEBVIEWACTIVITY
+    =============================================================================
+    Digunakan oleh WebViewActivity.kt untuk menampilkan halaman web (zonamancing.id)
+    di dalam aplikasi tanpa membuka browser eksternal.
+
+    CARA PENGGUNAAN WEBVIEW:
+    1. Tambahkan izin INTERNET di AndroidManifest.xml:
+         <uses-permission android:name="android.permission.INTERNET" />
+    2. Aktifkan JavaScript di WebViewActivity.kt:
+         settings.javaScriptEnabled = true
+    3. Pasang WebViewClient agar link tidak lompat ke browser HP:
+         webViewClient = object : WebViewClient() { ... }
+    4. Panggil loadUrl("https://...") untuk memuat URL target.
+-->
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -7,6 +22,7 @@
     android:layout_height="match_parent"
     tools:context=".Pengaturan.WebViewActivity">
 
+    <!-- Header dekoratif bergaya gelombang (drawable: bg_header_wave) -->
     <View
         android:id="@+id/background_header"
         android:layout_width="409dp"
@@ -15,6 +31,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <!--
+        Toolbar: Dipasang di atas WebView.
+        - Tombol panah kembali (ic_arrow_back) diatur logikanya di WebViewActivity.kt
+        - Jika WebView masih bisa goBack() maka mundur halaman web, jika tidak maka keluar Activity.
+    -->
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="0dp"
@@ -26,6 +48,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <!--
+        WebView: Komponen utama pemuatan konten halaman web.
+        - Menempati sisa ruang di bawah Toolbar hingga ke bawah layar (match_parent).
+        - ID "webView" diakses di WebViewActivity.kt untuk:
+            * Konfigurasi settings (JavaScript, DOM Storage, WideViewPort)
+            * Memasang WebViewClient dan WebChromeClient
+            * Menjalankan loadUrl() dan goBack()
+    -->
     <WebView
         android:id="@+id/webView"
         android:layout_width="0dp"

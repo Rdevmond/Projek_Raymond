@@ -1,10 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+    =============================================================================
+    LAYOUT FRAGMENT STATUS PESANAN
+    =============================================================================
+    Digunakan oleh StatusPesananFragment.kt untuk menampilkan daftar riwayat pesanan.
+
+    Komponen utama:
+    - ListView (id: listViewItems): Komponen daftar gulir vertikal.
+      Data diisi dari StatusPesananFragment.kt menggunakan SimpleAdapter.
+      Setiap baris menggunakan layout bawaan Android: simple_list_item_2
+      (terdiri dari 2 TextView: text1 untuk judul, text2 untuk deskripsi status).
+-->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <!--
+        ListView: Dihubungkan ke SimpleAdapter di StatusPesananFragment.kt.
+        - ID "listViewItems" diakses via binding.listViewItems
+        - android:divider: Garis pemisah antar item berwarna abu-abu
+    -->
     <ListView
         android:id="@+id/listViewItems"
         android:layout_width="match_parent"
@@ -13,3 +30,4 @@
         android:dividerHeight="1dp" />
 
 </LinearLayout>
+

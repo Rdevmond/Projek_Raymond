@@ -24,6 +24,7 @@ class TutorialActivity : AppCompatActivity() {
             insets
         }
 
+        // 1. Siapkan daftar 4 fragment yang menjadi slide tutorial
         val fragments = listOf(
             Tutorial1Fragment(),
             Tutorial2Fragment(),
@@ -31,8 +32,11 @@ class TutorialActivity : AppCompatActivity() {
             Tutorial4Fragment()
         )
 
+        // 2. Pasang TutorialFragmentAdapter ke ViewPager2 untuk mengelola slide
         val adapter = TutorialFragmentAdapter(this, fragments)
         binding.tutorialViewPager.adapter = adapter
+
+        // 3. Hubungkan indikator dot (WormDotsIndicator) dengan ViewPager2 agar sinkron saat digeser
         binding.dotIndicator.attachTo(binding.tutorialViewPager)
     }
 }

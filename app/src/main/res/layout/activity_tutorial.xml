@@ -8,6 +8,12 @@
     android:background="@color/white"
     tools:context=".Tutorial.TutorialActivity">
 
+    <!--
+        ViewPager2: Komponen swipe antar halaman slide tutorial.
+        - Diisi oleh TutorialFragmentAdapter (FragmentStateAdapter) di TutorialActivity.kt
+        - Menampilkan 4 fragment secara berurutan: Tutorial1 → Tutorial2 → Tutorial3 → Tutorial4
+        - Tutorial4Fragment berisi tombol "Mulai" yang menyimpan isTutorialFinished=true
+    -->
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/tutorialViewPager"
         android:layout_width="match_parent"
@@ -17,6 +23,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <!--
+        DotsIndicator (WormDotsIndicator dari library tbuonomo):
+        - Menampilkan titik-titik indikator yang berubah sesuai slide ViewPager2 aktif
+        - Dihubungkan ke ViewPager2 di TutorialActivity.kt via: dotIndicator.attachTo(tutorialViewPager)
+        - Perlu tambahkan dependency di build.gradle: implementation 'com.tbuonomo:dotsindicator:...'
+    -->
     <com.tbuonomo.viewpagerdotsindicator.DotsIndicator
         android:id="@+id/dotIndicator"
         android:layout_width="wrap_content"

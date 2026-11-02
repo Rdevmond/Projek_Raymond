@@ -89,6 +89,7 @@ class KomunitasActivity : AppCompatActivity() {
             insets
         }
 
+        // 1. Setup Toolbar dengan tombol navigasi kembali
         setSupportActionBar(binding.toolbar)
         supportActionBar?.apply {
             title = "Komunitas & Ulasan"
@@ -97,14 +98,20 @@ class KomunitasActivity : AppCompatActivity() {
             setHomeAsUpIndicator(R.drawable.ic_arrow_back)
         }
 
+        // =========================================================================
+        // 2. IMPLEMENTASI LISTVIEW DENGAN CUSTOM ADAPTER
+        // =========================================================================
+        // Menghubungkan data dummy (messageList) ke widget ListView (binding.listMessageItems)
+        // melalui MessageAdapter. Adapter akan menggambar setiap baris ulasan secara dinamis.
         val adapter = MessageAdapter(this, messageList)
         binding.listMessageItems.adapter = adapter
     }
 
+    // 3. Handler tombol Back pada toolbar
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             android.R.id.home -> {
-                onBackPressedDispatcher.onBackPressed()
+                onBackPressedDispatcher.onBackPressed() // Kembali ke activity sebelumnya (PengaturanActivity)
                 true
             }
             else -> super.onOptionsItemSelected(item)

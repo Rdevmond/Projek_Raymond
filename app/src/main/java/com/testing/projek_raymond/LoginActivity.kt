@@ -27,21 +27,41 @@ class LoginActivity : AppCompatActivity() {
             insets
         }
 
+        // Inisialisasi SharedPreferences untuk menyimpan status login user
         val sharedPref = getSharedPreferences("user_pref", MODE_PRIVATE)
 
+        // Isi otomatis form jika username & password sudah pernah disimpan lewat Snackbar
+        val savedUser = sharedPref.getString("saved_username", null)
+        val savedPass = sharedPref.getString("saved_password", null)
+        if (!savedUser.isNullOrEmpty()) {
+            binding.inptUser.setText(savedUser)
+        }
+        if (!savedPass.isNullOrEmpty()) {
+            binding.inptPass.setText(savedPass)
+        }
+
+        // Event klik tombol Login: validasi input username & password
         binding.btnLogin.setOnClickListener {
             val user = binding.inptUser.text.toString()
             val pass = binding.inptPass.text.toString()
             Log.e("Hasil", "Username: $user Password: $pass")
 
+            // Logika validasi: username tidak boleh kosong dan harus sama dengan password
             if (user.isNotEmpty() && user == pass) {
+                // Simpan status isLogin = true ke SharedPreferences
                 val editor = sharedPref.edit()
                 editor.putBoolean("isLogin", true)
-                editor.putString("username", user)
                 editor.apply()
-                startActivity(Intent(this, MainActivity::class.java))
-                finish()
+
+                // Pindah ke MainActivity setelah login berhasil dengan membawa data username & password (seperti di praktikumMobile)
+                val intent = Intent(this, MainActivity::class.java).apply {
+                    putExtra("username", user)
+                    putExtra("password", pass)
+                }
+                startActivity(intent)
+                finish() // Tutup LoginActivity agar user tidak bisa kembali ke halaman login via tombol back
             } else {
+                // Tampilkan popup AlertDialog pemberitahuan jika username/password tidak cocok
                 AlertDialog.Builder(this)
                     .setTitle("Login Gagal")
                     .setMessage("Silahkan coba lagi")

@@ -27,6 +27,7 @@ class ProfileKomentatorActivity : AppCompatActivity() {
             insets
         }
 
+        // 1. Setup Toolbar dengan judul dan tombol kembali
         setSupportActionBar(binding.toolbar)
         supportActionBar?.apply {
             title = "Profil Komentator"
@@ -35,17 +36,20 @@ class ProfileKomentatorActivity : AppCompatActivity() {
             setHomeAsUpIndicator(R.drawable.ic_arrow_back)
         }
 
+        // 2. Menerima data yang dikirim melalui Intent Extra dari MessageAdapter
         val nama = intent.getStringExtra("SENDER")
         val pesan = intent.getStringExtra("PESAN")
         val bio = intent.getStringExtra("BIO")
         val avatar = intent.getStringExtra("AVATAR")
 
+        // 3. Menampilkan data ke komponen UI (TextView)
         binding.txtNama.text = nama
         binding.txtPesan.text = pesan
         if (!bio.isNullOrEmpty()) {
             binding.txtBio.text = bio
         }
 
+        // 4. Memuat foto profil pengirim dari URL menggunakan Glide
         if (!avatar.isNullOrEmpty()) {
             Glide.with(this)
                 .load(avatar)
@@ -53,6 +57,7 @@ class ProfileKomentatorActivity : AppCompatActivity() {
         }
     }
 
+    // 5. Handler tombol Back pada toolbar (kembali ke KomunitasActivity)
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             android.R.id.home -> {

@@ -30,6 +30,7 @@ class PengaturanActivity : AppCompatActivity() {
             insets
         }
 
+        // 1. Setup Toolbar dengan tombol navigasi kembali (back button)
         setSupportActionBar(binding.toolbar)
         supportActionBar?.apply {
             title = "Pengaturan"
@@ -38,27 +39,34 @@ class PengaturanActivity : AppCompatActivity() {
             setHomeAsUpIndicator(R.drawable.ic_arrow_back)
         }
 
+        // 2. Ambil referensi SharedPreferences untuk manajemen sesi user
         val sharedPref = getSharedPreferences("user_pref", MODE_PRIVATE)
 
+        // 3. Tombol Komunitas: Membuka KomunitasActivity untuk melihat diskusi ulasan produk
         binding.btnKomunitas.setOnClickListener {
             val intent = Intent(this, KomunitasActivity::class.java)
             startActivity(intent)
         }
 
+        // 4. Tombol Zona Mancing: Membuka WebViewActivity untuk membuka link web luar
         binding.btnZonaMancing.setOnClickListener {
             val intent = Intent(this, WebViewActivity::class.java)
             startActivity(intent)
         }
 
+        // 5. Tombol Logout: Konfirmasi dialog -> hapus sesi di SharedPreferences -> kembali ke LoginActivity
         binding.btnLogout.setOnClickListener {
             AlertDialog.Builder(this)
                 .setTitle("Logout")
                 .setMessage("Apakah Anda yakin ingin keluar?")
                 .setPositiveButton("Ya") { dialog, _ ->
+                    // Hapus seluruh data sesi login
                     val editor = sharedPref.edit()
                     editor.clear()
                     editor.apply()
                     dialog.dismiss()
+
+                    // Arahkan kembali ke LoginActivity dan bersihkan tumpukan activity (backstack)
                     val intent = Intent(this, LoginActivity::class.java)
                     intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                     startActivity(intent)
@@ -69,18 +77,22 @@ class PengaturanActivity : AppCompatActivity() {
         }
     }
 
+    // Memuat menu opsi toolbar dari setting_menu.xml
     override fun onCreateOptionsMenu(menu: android.view.Menu): Boolean {
         menuInflater.inflate(R.menu.setting_menu, menu)
         return true
     }
 
+    // Handler klik menu pada toolbar: tombol back dan tombol tutorial
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             android.R.id.home -> {
+                // Tombol panah kembali (kembali ke halaman sebelumnya)
                 onBackPressedDispatcher.onBackPressed()
                 true
             }
             R.id.action_tutorial -> {
+                // Membuka kembali halaman panduan/tutorial aplikasi
                 val intent = Intent(this, com.testing.projek_raymond.Tutorial.TutorialActivity::class.java)
                 startActivity(intent)
                 true

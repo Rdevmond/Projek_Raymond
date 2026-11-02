@@ -43,30 +43,29 @@ class MainActivity : AppCompatActivity() {
 
         replaceFragment(AquariumFragment(), addToBackStack = false)
 
-        binding.btnFragment1.setOnClickListener {
-            replaceFragment(AquariumFragment())
-        }
-        binding.btnFragment2.setOnClickListener {
-            replaceFragment(MakananFragment())
-        }
-        binding.btnFragment3.setOnClickListener {
-            replaceFragment(AksesorisFragment())
+        binding.chipGroupKategori.setOnCheckedStateChangeListener { _, checkedIds ->
+            when (checkedIds.firstOrNull()) {
+                R.id.chipAquarium -> replaceFragment(AquariumFragment())
+                R.id.chipMakanan -> replaceFragment(MakananFragment())
+                R.id.chipAksesoris -> replaceFragment(AksesorisFragment())
+            }
         }
 
         binding.bottomNavView.setOnItemSelectedListener {
             when (it.itemId) {
                 R.id.nav_katalog -> {
-                    binding.tabKategori.visibility = android.view.View.VISIBLE
+                    binding.chipGroupKategori.visibility = android.view.View.VISIBLE
+                    binding.chipAquarium.isChecked = true
                     replaceFragment(AquariumFragment())
                     true
                 }
                 R.id.nav_keranjang -> {
-                    binding.tabKategori.visibility = android.view.View.GONE
+                    binding.chipGroupKategori.visibility = android.view.View.GONE
                     replaceFragment(KeranjangFragment())
                     true
                 }
                 R.id.nav_status_pesanan -> {
-                    binding.tabKategori.visibility = android.view.View.GONE
+                    binding.chipGroupKategori.visibility = android.view.View.GONE
                     replaceFragment(StatusPesananFragment())
                     true
                 }

@@ -20,49 +20,83 @@
             android:layout_height="match_parent"
             android:background="@color/blue2">
 
-            <EditText
-                android:id="@+id/inptUser"
-                android:layout_width="wrap_content"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layoutUser"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:ems="10"
+                android:layout_marginHorizontal="35dp"
+                android:layout_marginTop="16dp"
                 android:hint="Username"
-                android:inputType="text"
-                android:textColor="@color/white"
-                app:layout_constraintEnd_toEndOf="@+id/txtLogin"
-                app:layout_constraintHorizontal_bias="0.506"
-                app:layout_constraintStart_toStartOf="@+id/txtLogin"
-                app:layout_constraintTop_toBottomOf="@+id/txtLogin" />
+                android:textColorHint="@color/white"
+                app:boxStrokeColor="@color/white"
+                app:hintTextColor="@color/white"
+                app:startIconDrawable="@drawable/ic_login"
+                app:startIconTint="@color/white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtLogin">
 
-            <EditText
-                android:id="@+id/inptPass"
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/inptUser"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:textColor="@color/white" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layoutPass"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="35dp"
+                android:layout_marginTop="12dp"
+                android:hint="Password"
+                android:textColorHint="@color/white"
+                app:boxStrokeColor="@color/white"
+                app:hintTextColor="@color/white"
+                app:startIconDrawable="@drawable/ic_lock"
+                app:startIconTint="@color/white"
+                app:endIconMode="password_toggle"
+                app:endIconTint="@color/white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/layoutUser">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/inptPass"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPassword"
+                    android:textColor="@color/white" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/fgtpass"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:ems="10"
-                android:hint="Password"
-                android:inputType="textPassword"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="35dp"
+                android:text="Forgot password?"
                 android:textColor="@color/white"
-                app:layout_constraintEnd_toEndOf="@+id/inptUser"
-                app:layout_constraintStart_toStartOf="@+id/inptUser"
-                app:layout_constraintTop_toBottomOf="@+id/inptUser" />
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/layoutPass" />
 
             <Button
                 android:id="@+id/btnLogin"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="80dp"
-                android:layout_marginTop="49dp"
+                android:layout_marginHorizontal="35dp"
+                android:layout_marginTop="20dp"
                 android:backgroundTint="@color/dark_blue3"
                 android:text="Login"
                 android:textColor="@color/white"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/inptPass"
-                app:layout_constraintVertical_bias="0.0"
-                tools:ignore="MissingPrefix" />
+                app:layout_constraintTop_toBottomOf="@+id/fgtpass" />
 
             <TextView
                 android:id="@+id/txtLogin"
@@ -78,20 +112,6 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.354" />
 
-            <TextView
-                android:id="@+id/fgtpass"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:text="Forgot password?"
-                android:textColor="@color/white"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@+id/btnLogin"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.727"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/inptPass"
-                app:layout_constraintVertical_bias="0.055" />
 
             <ImageView
                 android:id="@+id/imageView2"

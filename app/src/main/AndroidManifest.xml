@@ -14,6 +14,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Projek_Raymond">
         <activity
+            android:name=".Tutorial.TutorialActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
             android:name=".SplashScreen"
             android:exported="true"
             android:windowSoftInputMode="adjustResize">

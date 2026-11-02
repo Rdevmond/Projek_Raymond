@@ -8,11 +8,19 @@
     android:background="@color/blueish"
     tools:context=".Pengaturan.PengaturanActivity">
 
+    <View
+        android:id="@+id/background_header"
+        android:layout_width="0dp"
+        android:layout_height="90dp"
+        android:background="@drawable/bg_header_wave"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="0dp"
         android:layout_height="?attr/actionBarSize"
-        android:background="@color/dark_blue3"
         app:navigationIcon="@drawable/ic_arrow_back"
         app:title="Settings"
         app:titleTextColor="@color/white"
@@ -87,17 +95,6 @@
                 android:layout_marginTop="10dp"
                 android:backgroundTint="@color/dark_blue3"
                 android:text="Bahasa / Language"
-                android:textColor="@color/white"
-                android:textSize="15sp"
-                android:textStyle="bold" />
-
-            <Button
-                android:id="@+id/btnBantuanPelanggan"
-                android:layout_width="match_parent"
-                android:layout_height="52dp"
-                android:layout_marginTop="10dp"
-                android:backgroundTint="@color/dark_blue3"
-                android:text="Bantuan Pelanggan"
                 android:textColor="@color/white"
                 android:textSize="15sp"
                 android:textStyle="bold" />

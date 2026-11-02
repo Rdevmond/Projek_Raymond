@@ -22,6 +22,8 @@ class SplashScreen : AppCompatActivity() {
         }
         val sharedPref = getSharedPreferences("user_pref", MODE_PRIVATE)
         val isLogin = sharedPref.getBoolean("isLogin", false)
+        val isTutorialFinished = sharedPref.getBoolean("isTutorialFinished", false)
+
         if (isLogin) {
             startActivity(Intent(this, MainActivity::class.java))
             finish()
@@ -30,7 +32,11 @@ class SplashScreen : AppCompatActivity() {
 
         lifecycleScope.launch {
             delay(2000)
-            val intent = Intent(this@SplashScreen, LoginActivity::class.java)
+            val intent = if (!isTutorialFinished) {
+                Intent(this@SplashScreen, com.testing.projek_raymond.Tutorial.TutorialActivity::class.java)
+            } else {
+                Intent(this@SplashScreen, LoginActivity::class.java)
+            }
             startActivity(intent)
             finish()
         }

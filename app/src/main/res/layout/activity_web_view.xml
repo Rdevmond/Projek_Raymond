@@ -7,18 +7,25 @@
     android:layout_height="match_parent"
     tools:context=".Pengaturan.WebViewActivity">
 
+    <View
+        android:id="@+id/background_header"
+        android:layout_width="409dp"
+        android:layout_height="103dp"
+        android:background="@drawable/bg_header_wave"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="0dp"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@color/dark_blue3"
+        android:layout_height="85dp"
         app:navigationIcon="@drawable/ic_arrow_back"
+        app:navigationIconTint="@color/white"
         app:title="Zona Mancing"
         app:titleTextColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
     <WebView
         android:id="@+id/webView"
         android:layout_width="0dp"

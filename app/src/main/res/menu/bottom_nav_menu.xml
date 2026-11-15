@@ -11,5 +11,5 @@
     <item
         android:id="@+id/nav_status_pesanan"
         android:icon="@drawable/ic_status_pesanan"
-        android:title="Status Pesanan" />
+        android:title="Status Pesanan"/>
 </menu>

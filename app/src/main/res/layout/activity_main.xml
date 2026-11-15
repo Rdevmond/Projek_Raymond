@@ -43,12 +43,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <!--
-        ChipGroup: Filter kategori katalog (Aquarium / Makanan / Aksesoris).
-        - app:singleSelection="true": Hanya 1 chip yang bisa aktif/terpilih sekaligus
-        - app:selectionRequired="true": Wajib ada 1 chip yang selalu terpilih (tidak bisa kosong)
-        - Listener perubahan chip ada di MainActivity.kt → chipGroupKategori.setOnCheckedStateChangeListener
-        - Saat chip berubah, replaceFragment() dipanggil untuk ganti isi fragment_container
-    -->
+
     <com.google.android.material.chip.ChipGroup
         android:id="@+id/chipGroupKategori"
         android:layout_width="wrap_content"
@@ -97,6 +92,7 @@
             app:chipBackgroundColor="@color/dark_blue3" />
 
     </com.google.android.material.chip.ChipGroup>
+    -->
 
     <!--
         =========================================================================
@@ -111,11 +107,10 @@
         android:id="@+id/fragment_container"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="8dp"
         app:layout_constraintBottom_toTopOf="@+id/bottomNavView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/chipGroupKategori" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
     <!--
         BottomNavigationView: Navigasi bawah layar untuk berpindah antar modul utama.

@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment
 import com.google.android.material.snackbar.Snackbar
 import com.testing.projek_raymond.Katalog.AksesorisFragment
 import com.testing.projek_raymond.Katalog.AquariumFragment
+import com.testing.projek_raymond.Katalog.KatalogFragment
 import com.testing.projek_raymond.Katalog.MakananFragment
 import com.testing.projek_raymond.Pengaturan.PengaturanActivity
 import com.testing.projek_raymond.Pesanan.KeranjangFragment
@@ -50,13 +51,9 @@ class MainActivity : AppCompatActivity() {
         // 2. IMPLEMENTASI FRAGMENT DEFAULT
         // ==========================================
         // Memuat fragment awal ke dalam container (FrameLayout: fragment_container) saat aplikasi pertama kali dibuka
-        replaceFragment(AquariumFragment(), addToBackStack = false)
+        replaceFragment(KatalogFragment(), addToBackStack = false)
 
-        // ==========================================
-        // 3. IMPLEMENTASI CHIP GROUP (FILTER KATALOG)
-        // ==========================================
-        // Mendengarkan perubahan pilihan chip filter (Aquarium, Makanan, Aksesoris)
-        // Setiap chip akan mengganti isi fragment_container dengan fragment katalog yang sesuai
+        /*
         binding.chipGroupKategori.setOnCheckedStateChangeListener { _, checkedIds ->
             when (checkedIds.firstOrNull()) {
                 R.id.chipAquarium -> replaceFragment(AquariumFragment())
@@ -64,29 +61,26 @@ class MainActivity : AppCompatActivity() {
                 R.id.chipAksesoris -> replaceFragment(AksesorisFragment())
             }
         }
+        */
 
         // ==========================================
         // 4. IMPLEMENTASI BOTTOM NAVIGATION BAR
         // ==========================================
         // Mengatur navigasi antar modul halaman utama via menu BottomNavigationView:
-        // - nav_katalog: Menampilkan filter chip dan memuat AquariumFragment
-        // - nav_keranjang: Menyembunyikan filter chip dan memuat KeranjangFragment
-        // - nav_status_pesanan: Menyembunyikan filter chip dan memuat StatusPesananFragment
+        // - nav_katalog: Memuat KatalogFragment (Tab: Aquarium, Makanan, Aksesoris)
+        // - nav_keranjang: Memuat KeranjangFragment
+        // - nav_status_pesanan: Memuat StatusPesananFragment
         binding.bottomNavView.setOnItemSelectedListener {
             when (it.itemId) {
                 R.id.nav_katalog -> {
-                    binding.chipGroupKategori.visibility = android.view.View.VISIBLE
-                    binding.chipAquarium.isChecked = true
-                    replaceFragment(AquariumFragment())
+                    replaceFragment(KatalogFragment())
                     true
                 }
                 R.id.nav_keranjang -> {
-                    binding.chipGroupKategori.visibility = android.view.View.GONE
                     replaceFragment(KeranjangFragment())
                     true
                 }
                 R.id.nav_status_pesanan -> {
-                    binding.chipGroupKategori.visibility = android.view.View.GONE
                     replaceFragment(StatusPesananFragment())
                     true
                 }

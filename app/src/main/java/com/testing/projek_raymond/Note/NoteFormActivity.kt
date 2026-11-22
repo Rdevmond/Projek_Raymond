@@ -43,18 +43,29 @@ class NoteFormActivity : AppCompatActivity() {
 
         binding.btnSaveNote.setOnClickListener {
             val title = binding.etTitle.text.toString().trim()
+            val category = binding.etCategory.text.toString().trim()
+            val quantity = binding.etQuantity.text.toString().trim()
+            val price = binding.etPrice.text.toString().trim()
             val content = binding.etContent.text.toString().trim()
-            if (title.isBlank() || content.isBlank()) {
+
+            if (title.isBlank() || category.isBlank() || quantity.isBlank() || price.isBlank()) {
                 Toast.makeText(
-                    this, "Isi semua kolom!", Toast.LENGTH_SHORT
+                    this, "Harap lengkapi semua data wajib!", Toast.LENGTH_SHORT
                 ).show()
                 return@setOnClickListener
             }
+
             binding.btnSaveNote.isEnabled = false
             lifecycleScope.launch {
                 try {
                     db.noteDao().insert(
-                        NoteEntity(title = title, content = content)
+                        NoteEntity(
+                            title = title,
+                            category = category,
+                            quantity = quantity,
+                            price = price,
+                            content = content
+                        )
                     )
                     finish()
                 } catch (e: Exception) {

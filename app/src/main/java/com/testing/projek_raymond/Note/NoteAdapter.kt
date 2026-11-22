@@ -1,6 +1,7 @@
 package com.testing.projek_raymond.Note
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -31,7 +32,15 @@ class NoteAdapter(
     ) {
         val note = notes[position]
         holder.binding.tvTitle.text = note.title
-        holder.binding.tvContent.text = note.content
+        holder.binding.tvCategory.text = note.category
+        holder.binding.tvPrice.text = note.price
+        holder.binding.tvQuantity.text = note.quantity
+        if (note.content.isBlank()) {
+            holder.binding.tvContent.visibility = View.GONE
+        } else {
+            holder.binding.tvContent.visibility = View.VISIBLE
+            holder.binding.tvContent.text = note.content
+        }
         holder.binding.btnDelete.setOnClickListener {
             MaterialAlertDialogBuilder(holder.itemView.context)
                 .setTitle("Hapus Catatan")

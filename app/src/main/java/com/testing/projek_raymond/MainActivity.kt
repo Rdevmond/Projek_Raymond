@@ -15,6 +15,7 @@ import com.testing.projek_raymond.Katalog.AksesorisFragment
 import com.testing.projek_raymond.Katalog.AquariumFragment
 import com.testing.projek_raymond.Katalog.KatalogFragment
 import com.testing.projek_raymond.Katalog.MakananFragment
+import com.testing.projek_raymond.Note.NoteFragment
 import com.testing.projek_raymond.Pengaturan.PengaturanActivity
 import com.testing.projek_raymond.Pesanan.KeranjangFragment
 import com.testing.projek_raymond.Pesanan.StatusPesananFragment
@@ -73,15 +74,23 @@ class MainActivity : AppCompatActivity() {
         binding.bottomNavView.setOnItemSelectedListener {
             when (it.itemId) {
                 R.id.nav_katalog -> {
+                    supportActionBar?.title = "Cari item.."
                     replaceFragment(KatalogFragment())
                     true
                 }
                 R.id.nav_keranjang -> {
+                    supportActionBar?.title = "Keranjang"
                     replaceFragment(KeranjangFragment())
                     true
                 }
                 R.id.nav_status_pesanan -> {
+                    supportActionBar?.title = "Status Pesanan"
                     replaceFragment(StatusPesananFragment())
+                    true
+                }
+                R.id.nav_catatan -> {
+                    supportActionBar?.title = "Catatan Belanja"
+                    replaceFragment(NoteFragment())
                     true
                 }
                 else -> false

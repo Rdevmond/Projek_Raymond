@@ -12,4 +12,8 @@
         android:id="@+id/nav_status_pesanan"
         android:icon="@drawable/ic_status_pesanan"
         android:title="Status Pesanan"/>
+    <item
+        android:id="@+id/nav_catatan"
+        android:icon="@drawable/ic_note"
+        android:title="Catatan" />
 </menu>
